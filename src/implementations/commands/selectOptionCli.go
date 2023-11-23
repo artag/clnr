@@ -51,7 +51,7 @@ func (c *SelectOptionCli) Execute(min, max int, printCaption func()) int {
 		}
 		c._printer.Printf("Select an option: ")
 		input, err := c._reader.ReadString('\n')
-		c._printer.Printf("")
+		input = strings.TrimRight(input, "\r\n")
 		if err != nil {
 			errMessage = "Wrong input. Enter integer number."
 			continue
