@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"time"
 
 	d "github.com/artag/clnr/domain"
 	commands "github.com/artag/clnr/implementations/commands"
@@ -14,12 +13,9 @@ import (
 
 const (
 	// Application version
-	version = "0.0.1"
-)
-
-var (
-	// Current year
-	year int = time.Now().Year()
+	version     = "0.0.2"
+	currentYear = 2023
+	git         = "github.com/artag/clnr"
 )
 
 func main() {
@@ -32,9 +28,9 @@ func main() {
 	endFlag := flag.String("end", "", "Include/exclude directory or file by name ending with suffix.")
 	rootFlag := flag.String("root", "", "Add a root directory to search for directories or files to delete.")
 	flag.Usage = func() {
-		fmt.Fprintf(flag.CommandLine.Output(), "clnr (Cleaner) ver. %s.\n", version)
+		fmt.Fprintf(flag.CommandLine.Output(), "clnr (Cleaner) ver. %s\n", version)
 		fmt.Fprintln(flag.CommandLine.Output(), "The tool to delete directories and/or files. Use at your own risk.")
-		fmt.Fprintf(flag.CommandLine.Output(), "Copyright %d. github.com/artag/clnr\n", year)
+		fmt.Fprintf(flag.CommandLine.Output(), "Copyright %d. %s\n", currentYear, git)
 		fmt.Fprintln(flag.CommandLine.Output(), "Usage information:")
 		flag.PrintDefaults()
 	}
