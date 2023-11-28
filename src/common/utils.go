@@ -39,7 +39,13 @@ func ContainsWhitespacesOnly(str string) bool {
 	return true
 }
 
+// True - string contains punctuations characters only.
+// Otherwise - false.
 func ContainsPunctsOnly(str string) bool {
+	if str == "" {
+		return false
+	}
+
 	for _, c := range str {
 		if !unicode.IsPunct(c) {
 			return false
@@ -48,6 +54,8 @@ func ContainsPunctsOnly(str string) bool {
 	return true
 }
 
+// Get slice if input slice is not empty.
+// Get empty slice if input slice is nil.
 func GetSliceOrEmpty[T any](slice []T) []T {
 	if slice == nil || len(slice) < 1 {
 		return make([]T, 0)
@@ -55,18 +63,20 @@ func GetSliceOrEmpty[T any](slice []T) []T {
 	return slice
 }
 
+// Remove item from slice by index.
 func Remove[T any](slice []T, idx int) []T {
-	if slice == nil || len(slice) < 1 || idx < 0 {
+	if slice == nil || len(slice) < 1 {
 		return make([]T, 0)
 	}
 
-	if len(slice) <= idx {
+	if idx < 0 || len(slice) <= idx {
 		return slice
 	}
 
 	return append(slice[:idx], slice[idx+1:]...)
 }
 
+// Split path by separator.
 func SplitPath(path string) []string {
 	var separator = string(os.PathSeparator)
 	var replacer = strings.NewReplacer("\\", separator, "/", separator)
